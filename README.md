@@ -1,6 +1,8 @@
 # mowmowinc
 GUI for data collection
 
+Main usage is open the dataCollection.py (follow instructions below) and press next, label the grass whether is "mowed" "unmowed" "irrelevant" by changing the comboBox (top-left area of the screen) then pressing the corresponding picture and it will save on a csv file for later be used on the Neural Network
+
 Camera.py
 	<br>- Class to connect to webcams
 	<br>- Construct Camera(NUM), 	NUM = 0 -> for laptops camera. NUM = val >= 1 for other USB cameras
@@ -23,5 +25,9 @@ dataCollectionLive.py
 	<br>- Class that contains all the logic. main script to run the GUI
 	<br>- Variables slices can be manipulated to increase the number of buttons generated. number in slices must be able to get a square root
 	<br>- You want to run this script if you want to label as it takes pictures
+
+initialVal
+	<br>- File that contains the last picture used on GUI
+	<br>- Be careful when using this
 
 Any questions please contact me
