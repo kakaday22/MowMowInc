@@ -68,10 +68,10 @@ class mainApp(QtGui.QDialog, mainGUI.mainFrame):
 		self.updateCounter()
 		imgFile = self.files[self.imgCount].replace(".JPG", "")
 		imgFile = imgFile.replace(".jpg", "")
+		self.imageName.setText("<< %s.%s >>" %(imgFile, ext))
+		imgName = "Resources/Images/%s.%s" %(imgFile, ext)
 		for i in range(self.dim):
 			for j in range(self.dim):
-				self.imageName.setText("<< %s.%s >>" %(imgFile, ext))
-				imgName = "Resources/Images/%s.%s" %(imgFile, ext)
 				try:
 					slicer.slice(imgName, slices)
 				except Exception as err:
