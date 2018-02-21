@@ -18,7 +18,7 @@ except ImportError:
 
 import mainGUI
 
-slices = 25
+slices = 100
 ext = "jpg"
 
 val = open("initialVal.txt", "r")
@@ -46,12 +46,11 @@ class mainApp(QtGui.QDialog, mainGUI.mainFrame):
 		if self.imgCount != -1:
 			if self.en[(imgID[0]-1, imgID[1]-1)]:
 				self.en[(imgID[0]-1, imgID[1]-1)] = False
-				imgFile = self.files[self.imgCount].replace(".jpg", "")
-				imgFile = self.files[self.imgCount].replace(".JPG", "")
+				imgFile, ignore = os.path.splitext(self.files[self.imgCount])
 				imgName = "%s_%02d_%02d.png" %(imgFile, imgID[0], imgID[1])
 				self.arr[(imgID[0]-1, imgID[1]-1)].setIcon(self.bIcon)
 				currBox = self.cBox.currentText()
-				output = "Mowed"*(currBox == "Mowed") + "Unmowed"*(currBox == "Unmowed") + "Irrelevant"*(currBox == "Irrelevant")
+				output = "Mowed"*(currBox == "Mowed") + "Unmowed"*(currBox == "Unmowed") + "Irrelevant"*(currBox == "Irrelevant") + "Unknown"*(currBox == "Unknown")
 				toStr = [imgName, output]
 				print(toStr)
 				with open("mowmowData.csv", "ab") as myFile:
@@ -66,17 +65,16 @@ class mainApp(QtGui.QDialog, mainGUI.mainFrame):
 			self.imgCount = ini-1
 		self.imgCount += 1
 		self.updateCounter()
-		imgFile = self.files[self.imgCount].replace(".JPG", "")
-		imgFile = imgFile.replace(".jpg", "")
+		imgFile, ignore = os.path.splitext(self.files[self.imgCount])
 		self.imageName.setText("<< %s.%s >>" %(imgFile, ext))
 		imgName = "Resources/Images/%s.%s" %(imgFile, ext)
+		try:
+			slicer.slice(imgName, slices)
+		except Exception as err:
+			print(err)
+			sys.exit(1)
 		for i in range(self.dim):
 			for j in range(self.dim):
-				try:
-					slicer.slice(imgName, slices)
-				except Exception as err:
-					print(err)
-					sys.exit(1)
 				imgName = "Resources/Images/%s_%02d_%02d.png" %(imgFile, i+1, j+1)
 				icon = self.getIcon(imgName)
 				self.en[(i,j)] = True

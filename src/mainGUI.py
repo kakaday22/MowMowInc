@@ -81,11 +81,12 @@ class mainFrame(object):
 		self.cBox = QtGui.QComboBox(self.Frame)
 		self.cBox.setGeometry(QtCore.QRect(20,40,81,23))
 		self.cBox.setEditable(False)
-		self.cBox.setMaxVisibleItems(3)
+		self.cBox.setMaxVisibleItems(4)
 		self.cBox.setObjectName(_fromUtf8("comboBox"))
 		self.cBox.addItem(_fromUtf8("Mowed"))
 		self.cBox.addItem(_fromUtf8("Unmowed"))
 		self.cBox.addItem(_fromUtf8("Irrelevant"))
+		self.cBox.addItem(_fromUtf8("Unknown"))
 
 	def getIcon(self, img):
 		icon = QtGui.QIcon()
