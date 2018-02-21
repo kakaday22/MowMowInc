@@ -18,7 +18,7 @@ except ImportError:
 
 import mainGUI
 
-slices = 100
+slices = 25	
 ext = "jpg"
 
 val = open("initialVal.txt", "r")
@@ -95,3 +95,5 @@ def main():
 if __name__ == "__main__":
 	if slices % sqrt(slices) == 0:
 		main()
+	else:
+		print("Slices %d is not square rootable" %(slices))
