@@ -1,10 +1,8 @@
 import sys
-import csv
-import image_slicer as slicer
-import glob
-import os
 from math import sqrt
 from functools import partial
+import csv
+import image_slicer as slicer
 
 try:
 	from PyQt4 import QtGui
@@ -19,7 +17,6 @@ except ImportError:
 import mainGUI
 
 slices = 25
-ext = "jpg"
 
 val = open("initialVal.txt", "r")
 ini = int(val.read())
@@ -27,9 +24,6 @@ val.close()
 class mainApp(QtGui.QDialog, mainGUI.mainFrame):
 	def __init__(self):
 		super(self.__class__, self).__init__()
-		os.chdir("Resources/Images")
-		self.files = glob.glob("*.%s" %(ext))
-		os.chdir("../..")
 		self.imgCount = -1
 		self.bIcon = self.getIcon("Resources/blank.png")
 		self.dim = int(sqrt(slices))
@@ -46,9 +40,7 @@ class mainApp(QtGui.QDialog, mainGUI.mainFrame):
 		if self.imgCount != -1:
 			if self.en[(imgID[0]-1, imgID[1]-1)]:
 				self.en[(imgID[0]-1, imgID[1]-1)] = False
-				imgFile = self.files[self.imgCount].replace(".jpg", "")
-				imgFile = self.files[self.imgCount].replace(".JPG", "")
-				imgName = "%s_%02d_%02d.png" %(imgFile, imgID[0], imgID[1])
+				imgName = "image%d_%02d_%02d.png" %(self.imgCount, imgID[0], imgID[1])
 				self.arr[(imgID[0]-1, imgID[1]-1)].setIcon(self.bIcon)
 				currBox = self.cBox.currentText()
 				output = "Mowed"*(currBox == "Mowed") + "Unmowed"*(currBox == "Unmowed") + "Irrelevant"*(currBox == "Irrelevant")
@@ -66,18 +58,16 @@ class mainApp(QtGui.QDialog, mainGUI.mainFrame):
 			self.imgCount = ini-1
 		self.imgCount += 1
 		self.updateCounter()
-		imgFile = self.files[self.imgCount].replace(".JPG", "")
-		imgFile = imgFile.replace(".jpg", "")
 		for i in range(self.dim):
 			for j in range(self.dim):
-				self.imageName.setText("<< %s.%s >>" %(imgFile, ext))
-				imgName = "Resources/Images/%s.%s" %(imgFile, ext)
+				self.imageName.setText("<< image%d.jpg >>" %(self.imgCount))
+				imgName = "Resources/Images/image%d.jpg" %(self.imgCount)
 				try:
 					slicer.slice(imgName, slices)
 				except Exception as err:
 					print(err)
 					sys.exit(1)
-				imgName = "Resources/Images/%s_%02d_%02d.png" %(imgFile, i+1, j+1)
+				imgName = "Resources/Images/image%d_%02d_%02d.png" %(self.imgCount, i+1, j+1)
 				icon = self.getIcon(imgName)
 				self.en[(i,j)] = True
 				self.arr[(i,j)].setIcon(icon)
