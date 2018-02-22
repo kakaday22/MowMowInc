@@ -57,25 +57,31 @@ class mainApp(QtGui.QDialog, mainGUI.mainFrame):
 					writer = csv.writer(myFile)
 					writer.writerow(toStr)
 			else:
-				print("Segmentation Fault")
+				print("Segmentation Fault\n(You already label this picture)")
 
-	#to change image, call getIcon with new image, call refreshButton (this method will use the new icon to change images), all calls are from NEXT BUTTON
 	def nextImg(self):
 		if self.imgCount == -1:
 			self.imgCount = ini-1
 		self.imgCount += 1
+		if self.imgCount >= len(self.files):
+			print("No more images to calculate :)")
+			exit(2)
 		self.updateCounter()
 		imgFile, ignore = os.path.splitext(self.files[self.imgCount])
 		self.imageName.setText("<< %s.%s >>" %(imgFile, ext))
 		imgName = "Resources/Images/%s.%s" %(imgFile, ext)
 		try:
-			slicer.slice(imgName, slices)
+			tiles = slicer.slice(imgName, slices, False)
+			direc = os.path.dirname("Resources/Images/%s_slices/" %(imgFile))
+			if not os.path.exists(direc):
+				os.makedirs(direc)
+			slicer.save_tiles(tiles, prefix = imgFile, directory = direc)
 		except Exception as err:
 			print(err)
 			sys.exit(1)
 		for i in range(self.dim):
 			for j in range(self.dim):
-				imgName = "Resources/Images/%s_%02d_%02d.png" %(imgFile, i+1, j+1)
+				imgName = "Resources/Images/%s_slices/%s_%02d_%02d.png" %(imgFile, imgFile, i+1, j+1)
 				icon = self.getIcon(imgName)
 				self.en[(i,j)] = True
 				self.arr[(i,j)].setIcon(icon)
