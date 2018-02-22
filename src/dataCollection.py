@@ -18,7 +18,7 @@ except ImportError:
 
 import mainGUI
 
-slices = 25	
+slices = 25
 ext = "jpg"
 
 val = open("initialVal.txt", "r")
