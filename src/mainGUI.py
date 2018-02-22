@@ -21,7 +21,6 @@ class mainFrame(object):
 	def setupUI(self, Frame):
 		dimension = (self.dim,self.dim)
 		imgQlty = (640,480)
-		# imgQlty = (4000,3000)
 		crossSize = (imgQlty[0]/self.dim, imgQlty[1]/self.dim)
 		self.Frame = Frame
 		height = 70+dimension[1]*(crossSize[1]+2)
@@ -60,10 +59,10 @@ class mainFrame(object):
 		self.arr = {}
 		self.en = {}
 		currSettings = [20,70,imgSize[0], imgSize[1]]
+		imgName = "Resources/blank.png"
+		icon  = self.getIcon(imgName)
 		for i in range(num[0]): #for every row
 			for j in range(num[1]): #for every col
-				imgName = "Resources/blank.png"
-				icon  = self.getIcon(imgName)
 				self.en[(i,j)] = True
 				self.arr[(i,j)] = QtGui.QPushButton(self.Frame)
 				self.arr[(i,j)].setGeometry(QtCore.QRect(*tuple(currSettings)))
@@ -94,5 +93,5 @@ class mainFrame(object):
 		return icon
 
 	def restrainlateUi(self):
-		self.Frame.setWindowTitle(_translate("Frame", "MowMow Inc Data Collection", None))
+		self.Frame.setWindowTitle(_translate("Frame", "MowMow Inc Data Collection Tool", None))
 		self.Next.setText(_translate("Frame", "Next", None))
