@@ -1,5 +1,5 @@
 # mowmowinc
-GUI for data collection
+GUI for data collection 
 
 Main usage is open the dataCollection.py (follow instructions below) and press next, label the grass whether is "mowed" "unmowed" "irrelevant" by changing the comboBox (top-left area of the screen) then pressing the corresponding picture and it will save on a csv file for later be used on the Neural Network.
 
