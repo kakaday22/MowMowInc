@@ -49,7 +49,6 @@ This class contains all the logics behind each button actuation and backend of t
   <p>This class is a lawnmower simulation. It uses a Finite State Machine to simulate a pipeline that at each state a task is perfomed. It starts with no actions until a trigger is flagged and begins the run. Begins by taking a pictures and sends it to a neural network, where the neural network will obtain the predictions and distribute it to its proper states (Mowed, Unmowed, Irrelevant, Unknown) in which those state will gather some parameters that will later be executed by the last state.</p>
   <h3>mowmowCNNPredictor.py</h3>
   <p>Dependency class used on the NeuralNet to come with all the predictions</p>
-</p>
 
 <h2>Misc Codes</h2>
 <p>
