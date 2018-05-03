@@ -28,9 +28,9 @@ Script used for training the network with training data created from the data co
 Network Structure:
 
 ```
-                 /------\          /------\          /------\          /------\          /------\
-input | -------> | CONV | -------> | POOL | -------> | CONV | -------> | CONV | -------> | POOL | ---\
-                 \------/          \------/          \------/          \------/          \------/    |
+               /------\          /------\          /------\          /------\          /------\
+input -------> | CONV | -------> | POOL | -------> | CONV | -------> | CONV | -------> | POOL | -----\
+               \------/          \------/          \------/          \------/          \------/      |
                                                                                                      |
       /---------\          /-----------------\          /---------\          /-----------------\     |
  /--- | DROPOUT | <------- | FULLY_CONNECTED | <------- | DROPOUT | <------- | FULLY_CONNECTED | <---/
