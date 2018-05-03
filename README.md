@@ -36,9 +36,9 @@ input -------> | CONV | -------> | POOL | -------> | CONV | -------> | CONV | --
  /--- | DROPOUT | <------- | FULLY_CONNECTED | <------- | DROPOUT | <------- | FULLY_CONNECTED | <---/
  |    \---------/          \-----------------/          \---------/          \-----------------/
  |
- |     /-----------------\      /---------\      /-----------------\      /---------\
- \---> | FULLY_CONNECTED | ---> | DROPOUT | ---> | FULLY_CONNECTED | ---> | DROPOUT | ---> output
-       \-----------------/      \---------/      \-----------------/      \---------/
+ |     /-----------------\        /---------\        /-----------------\
+ \---> | FULLY_CONNECTED | -----> | DROPOUT | -----> | FULLY_CONNECTED |  -----> output
+       \-----------------/        \---------/        \-----------------/
 ```
 ### mowmowCNNEval.py
 Class used to perform manual benchmarking on the accuracy of training checkpoints.
