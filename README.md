@@ -79,4 +79,4 @@ Script that takes an image and resize it to a specified size
 Script that takes a video and slices each frame and saves it to a specified directory
 
 ## Project Poster
-![Capstone Poster](https://github.com/sarthakbatragatech/MowMowInc/blob/master/Capstone%20Poster.jpg)
+![Capstone Poster](Capstone Poster.jpg)
