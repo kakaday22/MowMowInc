@@ -78,3 +78,5 @@ Script that takes an image and resize it to a specified size
 ### videoSlicing.py
 Script that takes a video and slices each frame and saves it to a specified directory
 
+## Project Poster
+![Capstone Poster](CapstonePoster.jpg)
